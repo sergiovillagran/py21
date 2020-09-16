@@ -2,11 +2,6 @@ import random
 lista = [1,2,3,4,5,6,7,8,9,10,"J","Q","K","A"] + [1,2,3,4,5,6,7,8,9,10,"J","Q","K","A"] +[1,2,3,4,5,6,7,8,9,10,"J","Q","K","A"] + [1,2,3,4,5,6,7,8,9,10,"J","Q","K","A"]
 random.shuffle(lista)
 
-print ('Jugador')
-print ('Carta 1:', lista.pop(), 'Carta 2:' , lista.pop())
-print ('Casa')
-print ('Carta 1:', lista [2], 'Carta 2:' , lista [3])
-
 def veintiuna(lista, manoJugador, manoMaquina):
         if (sumar(manoJugador) > 21):
                 print ('Jugador Perdió', sumar(manoJugador))
