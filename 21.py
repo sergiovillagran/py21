@@ -3,35 +3,46 @@ import random
 def generarBaraja():
   return [1,2,3,4,5,6,7,8,9,10,"J","Q","K","A"] * 4
 
-def veintiuna(lista, manoJugador, manoMaquina):
-  if(manoJugador.len == 0 and manoMaquina.len == 0):
-    return veintiuna(lista, [lista.pop(), lista.pop()], [lista.pop(), lista.pop()])
+def veintiuna(baraja, manoJugador, manoMaquina):
+  print(baraja)
+  if esPrimeraRonda(manoJugador, manoMaquina):
+    return veintiuna(baraja, [baraja.pop(), baraja.pop()], [baraja.pop(), baraja.pop()])
   
-  if (sumar(manoJugador) > 21):
-    print ('Jugador Perdió', sumar(manoJugador))
+  if manoSePaso(manoJugador):
+    return print ('Jugador Perdió', sumar(manoJugador))
+  
+  print(manoJugador) 
+  if jugadorDeseaOtraCarta():
+    manoJugador.append(baraja.pop())
+    return veintiuna(baraja, manoJugador, manoMaquina)
   else:
-    print(manoJugador) 
-    if ( preguntar() == 1 ):
-      manoJugador.append(lista.pop())
-      veintiuna(lista, manoJugador, manoMaquina)
-    else:
-      print ('Jugador Planta')
+    print ('Jugador Planta')
 
-def preguntar(): 
-  if input ("Desea otra carta? ") is "Y":
-    return 1
+def jugadorDeseaOtraCarta(): 
+  if input ("Desea otra carta? ") == "Y":
+    return True
   else:
-    return 0
+    return False
+
+def manoSePaso (mano):
+  return sumar(mano) > 21
+
+def esPrimeraRonda(manoJugador, manoMaquina):
+  return manoJugador is None and manoMaquina is None
 
 def sumar(mano):
   if (len(mano) == 1):
     return interpretador(mano[0])
-  else:                
+  else:
+    print(interpretador(mano[0]))
     return interpretador(mano[0]) + sumar(mano[1:])
 
 def interpretador(carta):
+  print(carta)
   if(carta == "K" or carta == "Q" or carta == "J"):
     return 10
+  elif carta == "A":
+    return 1
   else:
     return carta
 
