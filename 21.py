@@ -4,22 +4,23 @@ def generarBaraja():
   return [1,2,3,4,5,6,7,8,9,10,"J","Q","K","A"] * 4
 
 def veintiuna(baraja, manoJugador, manoMaquina):
-  print(baraja)
+  print(len(baraja))
   if esPrimeraRonda(manoJugador, manoMaquina):
+    random.shuffle(baraja)
     return veintiuna(baraja, [baraja.pop(), baraja.pop()], [baraja.pop(), baraja.pop()])
   
-  if manoSePaso(manoJugador):
+  if manoSePaso(manoJugador) is True:
     return print ('Jugador Perdió', sumar(manoJugador))
   
   print(manoJugador) 
-  if jugadorDeseaOtraCarta():
+  if jugadorDeseaOtraCarta() is True:
     manoJugador.append(baraja.pop())
     return veintiuna(baraja, manoJugador, manoMaquina)
   else:
     print ('Jugador Planta')
 
 def jugadorDeseaOtraCarta(): 
-  if input ("Desea otra carta? ") == "Y":
+  if input ("Desea otra carta? ") == "Y" or "y":
     return True
   else:
     return False
