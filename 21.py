@@ -20,7 +20,7 @@ def veintiuna(baraja, manoJugador, manoMaquina):
     print ('Jugador Planta')
 
 def jugadorDeseaOtraCarta(): 
-  if input ("Desea otra carta? ") == "Y" or "y":
+  if input ("Desea otra carta? ") == "y":
     return True
   else:
     return False
@@ -32,14 +32,12 @@ def esPrimeraRonda(manoJugador, manoMaquina):
   return manoJugador is None and manoMaquina is None
 
 def sumar(mano):
-  if (len(mano) == 1):
+  if len(mano) == 1:
     return interpretador(mano[0])
   else:
-    print(interpretador(mano[0]))
     return interpretador(mano[0]) + sumar(mano[1:])
 
 def interpretador(carta):
-  print(carta)
   if(carta == "K" or carta == "Q" or carta == "J"):
     return 10
   elif carta == "A":
